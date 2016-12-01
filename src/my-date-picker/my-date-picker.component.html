@@ -1,4 +1,4 @@
-<div>
+<div class="ng2-iq-datepicker">
     <div *ngIf="!opts.inline" class="input-group">
         <input type="text" class="form-control text-center" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}"
             placeholder="{{opts.showDateFormatPlaceholder?opts.dateFormat:''}}" (keyup)="userDateInput($event)" [value]="selectionDayTxt"
@@ -13,35 +13,43 @@
         </div>
     </div>
     <div class="selector" *ngIf="showSelector||opts.inline" [ngClass]="{'inlinedp': opts.inline, 'alignselectorright': opts.alignSelectorRight}">
-        <table class="header">
-            <tr>
-                <td>
-                    <div style="float:left">
-                        <a class="headerbtn" (click)="prevMonth()"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                        <div class="headermonthtxt">
-                            <input type="text" *ngIf="editMonth" class="monthinput" maxlength="4" inputFocus [value]="visibleMonth.monthTxt" (keyup)="userMonthInput($event)"
-                                (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
-                            <span [ngClass]="{'monthlabel': opts.editableMonthAndYear}" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
-                        </div>
-                        <div class="headerbtn" (click)="nextMonth()"><span class="icon icon-right"></span></div>
+        <div class="row selector-header">
+            <div class="col-sm-4">
+                <div style="float:left">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <a class="btn btn-sm btn-slim btn-default" (click)="prevMonth()"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                        </span>
+                        <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width" maxlength="4" inputFocus [value]="visibleMonth.monthTxt"
+                            (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
+                        <span class="form-control input-sm input-min-width" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
+                        <span class="input-group-btn">
+                            <a class="btn btn-sm btn-slim btn-default" (click)="nextMonth()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </span>
                     </div>
-                </td>
-                <td>
-                    <button type="button" class="headertodaybtn" (click)="todayClicked()">{{opts.todayBtnTxt}}</button>
-                </td>
-                <td>
-                    <div style="float:right">
-                        <a class="headerbtn" (click)="prevYear()"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                        <div class="headeryeartxt">
-                            <input type="text" *ngIf="editYear" class="yearinput" maxlength="4" inputFocus [value]="visibleMonth.year" (keyup)="userYearInput($event)"
-                                (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
-                            <span [ngClass]="{'yearlabel': opts.editableMonthAndYear}" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
-                        </div>
-                        <div class="headerbtn" (click)="nextYear()"><span class="icon icon-right"></span></div>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <button type="button" class="btn btn-sm btn-default" (click)="todayClicked()">{{opts.todayBtnTxt}}</button>
+            </div>
+            <div class="col-sm-4">
+                <div style="float:right">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <a class="btn btn-sm btn-slim btn-default" (click)="prevYear()"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                        </span>
+
+                        <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width" maxlength="4" inputFocus [value]="visibleMonth.year" (keyup)="userYearInput($event)"
+                            (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
+                        <span class="form-control input-sm input-min-width" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
+
+                        <span class="input-group-btn">
+                            <a class="btn btn-sm btn-slim btn-default" (click)="nextYear()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </span>
                     </div>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
         <table class="caltable">
             <thead>
                 <tr>
@@ -60,4 +68,3 @@
             </tbody>
         </table>
     </div>
-</div>
