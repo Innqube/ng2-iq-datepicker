@@ -10,14 +10,14 @@ const myDpTpl: string = require("./my-date-picker.component.html");
 // webpack2_
 
 @Component({
-    selector: "my-date-picker",
+    selector: "ng2-iq-datepicker",
     styles: [myDpStyles],
     template: myDpTpl,
     providers: [LocaleService, ValidatorService],
     encapsulation: ViewEncapsulation.None
 })
 
-export class MyDatePicker implements OnChanges {
+export class DatePicker implements OnChanges {
     @Input() options: any;
     @Input() locale: string;
     @Input() defaultMonth: string;
