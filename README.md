@@ -236,4 +236,4 @@ Run sample application:
 
 ## Author
 * Original author: kekeh
-* Project customizations: [Innqube](www.innqube.com)
+* Project customizations: [Innqube](http://www.innqube.com)
