@@ -1,13 +1,12 @@
 # mydatepicker
 
-**Angular 2 date picker - Angular2 reusable UI component**
+**Angular 2 datepicker based on Bootstrap 3**
 
-[![Build Status](https://travis-ci.org/kekeh/mydatepicker.svg?branch=master)](https://travis-ci.org/kekeh/mydatepicker)
-[![codecov](https://codecov.io/gh/kekeh/mydatepicker/branch/master/graph/badge.svg)](https://codecov.io/gh/kekeh/mydatepicker)
-[![npm](https://img.shields.io/npm/v/mydatepicker.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/mydatepicker)
+[![Build Status](https://travis-ci.org/Innqube/ng2-iq-datepicker.svg?branch=master)](https://travis-ci.org/Innqube/ng2-iq-datepicker)
+[![codecov](https://codecov.io/gh/Innqube/ng2-iq-datepicker/branch/master/graph/badge.svg)](https://codecov.io/gh/Innqube/ng2-iq-datepicker)
 
 ## Description
-Simple Angular2 date picker. Online demo is [here](http://kekeh.github.io/mydatepicker)
+Simple Angular2 date picker based on Bootstrap 3. This customization is built upon kekeh's work on [https://github.com/kekeh/mydatepicker](https://github.com/kekeh/mydatepicker)
 
 ## Installation
 
@@ -225,8 +224,6 @@ Run sample application:
  1. Open a terminal and type __npm start__
  2. Open __http://localhost:5000__ to browser
 
-## Demo
-Online demo is [here](http://kekeh.github.io/mydatepicker)
 
 ## Compatibility (tested with)
 * Firefox (latest)
@@ -238,4 +235,5 @@ Online demo is [here](http://kekeh.github.io/mydatepicker)
 * License: MIT
 
 ## Author
-* Author: kekeh
+* Original author: kekeh
+* Project customizations: [Innqube](www.innqube.com)
