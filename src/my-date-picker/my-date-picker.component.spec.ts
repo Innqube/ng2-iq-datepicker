@@ -847,18 +847,6 @@ describe('MyDatePicker', () => {
         expect(de.styles['width']).toBe('20%');
     });
 
-    it('options - selection text font size', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {selectionTxtFontSize: '10px'};
-
-        comp.parseOptions();
-
-        fixture.detectChanges();
-        let selection = getElement('.selection');
-        expect(selection).not.toBe(null);
-        expect(selection.styles['font-size']).toBe('10px');
-    });
-
     it('options - align selector right', () => {
         comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
         comp.options = {alignSelectorRight: true};

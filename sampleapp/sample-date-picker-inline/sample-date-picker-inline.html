@@ -43,6 +43,6 @@
     <div style="padding:4px;border-radius:4px;margin-bottom:8px;float:right" [ngStyle]="{border: border}">
         {{selectedTextInline}}
     </div>
-    <my-date-picker [options]="myDatePickerInlineOptions" (dateChanged)="onDateChanged($event)"
-                    [selDate]="selectedDateInline" [locale]="locale"></my-date-picker>
+    <ng2-iq-datepicker [options]="myDatePickerInlineOptions" (dateChanged)="onDateChanged($event)"
+                    [selDate]="selectedDateInline" [locale]="locale"></ng2-iq-datepicker>
 </div>
