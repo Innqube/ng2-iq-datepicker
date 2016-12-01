@@ -1,13 +1,14 @@
-<div class="ng2-iq-datepicker">
+<div class="ng2-iq-datepicker" [ngStyle]="{'width': opts.width, 'border': opts.inline ? 'none' : '1px solid #AAA'}">
     <div *ngIf="!opts.inline" class="input-group">
-        <input type="text" class="form-control text-center" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}"
+        <input type="text" class="form-control text-center selection" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}"
             placeholder="{{opts.showDateFormatPlaceholder?opts.dateFormat:''}}" (keyup)="userDateInput($event)" [value]="selectionDayTxt"
+            [ngStyle]="{'height': opts.height, 'line-height': opts.height, 'font-size': opts.selectionTxtFontSize, 'border': 'none', 'padding-right': selectionDayTxt.length>0 ? '60px' : '30px'}"
             [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField" />
         <div class="input-group-btn">
-            <button type="button" class="btn btn-default" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [disabled]="opts.componentDisabled">
+            <button type="button" class="btn btn-default btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [disabled]="opts.componentDisabled">
                 <i class="glyphicon glyphicon-remove"></i>
             </button>
-            <button class="btn btn-default" (click)="openBtnClicked()" [disabled]="opts.componentDisabled">
+            <button class="btn btn-default btnpicker" (click)="openBtnClicked()" [disabled]="opts.componentDisabled">
                 <i class="glyphicon glyphicon-calendar"></i>
             </button>
         </div>
@@ -18,33 +19,38 @@
                 <div style="float:left">
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <a class="btn btn-sm btn-slim btn-default" (click)="prevMonth()"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a class="btn btn-sm btn-slim btn-default btn-prev-month" (click)="prevMonth()"><i class="glyphicon glyphicon-chevron-left"></i></a>
                         </span>
-                        <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width" maxlength="4" inputFocus [value]="visibleMonth.monthTxt"
-                            (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
-                        <span class="form-control input-sm input-min-width" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
+
+                        <div class="headermonthtxt">
+                            <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width monthinput" maxlength="4" inputFocus [value]="visibleMonth.monthTxt"
+                                (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
+                            <span class="form-control input-sm input-min-width monthlabel" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
+                        </div>
                         <span class="input-group-btn">
-                            <a class="btn btn-sm btn-slim btn-default" (click)="nextMonth()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-sm btn-slim btn-default btn-next-month" (click)="nextMonth()"><span class="glyphicon glyphicon-chevron-right"></span></a>
                         </span>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4 text-center">
-                <button type="button" class="btn btn-sm btn-default" (click)="todayClicked()">{{opts.todayBtnTxt}}</button>
+                <button type="button" class="btn btn-sm btn-default headertodaybtn" (click)="todayClicked()">{{opts.todayBtnTxt}}</button>
             </div>
             <div class="col-sm-4">
                 <div style="float:right">
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <a class="btn btn-sm btn-slim btn-default" (click)="prevYear()"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <a class="btn btn-sm btn-slim btn-default btn-prev-year" (click)="prevYear()"><i class="glyphicon glyphicon-chevron-left"></i></a>
                         </span>
 
-                        <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width" maxlength="4" inputFocus [value]="visibleMonth.year" (keyup)="userYearInput($event)"
-                            (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
-                        <span class="form-control input-sm input-min-width" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
+                        <div class="headeryeartxt">
+                            <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width yearinput" maxlength="4" inputFocus [value]="visibleMonth.year"
+                                (keyup)="userYearInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
+                            <span class="form-control input-sm input-min-width yearlabel" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
+                        </div>
 
                         <span class="input-group-btn">
-                            <a class="btn btn-sm btn-slim btn-default" (click)="nextYear()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-sm btn-slim btn-default btn-next-year" (click)="nextYear()"><span class="glyphicon glyphicon-chevron-right"></span></a>
                         </span>
                     </div>
                 </div>

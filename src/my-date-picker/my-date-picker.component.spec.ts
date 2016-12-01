@@ -33,7 +33,7 @@ describe('MyDatePicker', () => {
 
         comp = fixture.componentInstance;
 
-        de = fixture.debugElement.query(By.css('.mydp'));
+        de = fixture.debugElement.query(By.css('.ng2-iq-datepicker'));
         el = de.nativeElement;
     });
 
@@ -118,7 +118,7 @@ describe('MyDatePicker', () => {
         btnpicker.nativeElement.click();
 
         fixture.detectChanges();
-        let prevmonth = getElement('.header tr td:first-child .headerbtn:first-child');
+        let prevmonth = getElement('.btn-prev-month');
         expect(prevmonth).not.toBe(null);
 
         prevmonth.nativeElement.click();
@@ -136,7 +136,7 @@ describe('MyDatePicker', () => {
         btnpicker.nativeElement.click();
 
         fixture.detectChanges();
-        let nextmonth = getElement('.header tr td:first-child .headerbtn:last-child');
+        let nextmonth = getElement('.btn-next-month');
         expect(nextmonth).not.toBe(null);
 
         nextmonth.nativeElement.click();
@@ -154,7 +154,7 @@ describe('MyDatePicker', () => {
         btnpicker.nativeElement.click();
 
         fixture.detectChanges();
-        let prevmonth = getElement('.header tr td:first-child .headerbtn:first-child');
+        let prevmonth = getElement('.btn-prev-year');
         expect(prevmonth).not.toBe(null);
 
         prevmonth.nativeElement.click();
@@ -170,7 +170,7 @@ describe('MyDatePicker', () => {
         btnpicker.nativeElement.click();
 
         fixture.detectChanges();
-        let nextmonth = getElement('.header tr td:first-child .headerbtn:last-child');
+        let nextmonth = getElement('.btn-next-year');
         expect(nextmonth).not.toBe(null);
 
         nextmonth.nativeElement.click();
@@ -188,7 +188,7 @@ describe('MyDatePicker', () => {
         comp.parseOptions();
 
         fixture.detectChanges();
-        let prevmonth = getElement('.header tr td:first-child .headerbtn:first-child');
+        let prevmonth = getElement('.btn-prev-month');
         expect(prevmonth).not.toBe(null);
 
         prevmonth.nativeElement.click();
@@ -210,7 +210,7 @@ describe('MyDatePicker', () => {
         comp.parseOptions();
 
         fixture.detectChanges();
-        let nextmonth = getElement('.header tr td:first-child .headerbtn:last-child');
+        let nextmonth = getElement('.btn-next-month');
         expect(nextmonth).not.toBe(null);
 
         nextmonth.nativeElement.click();
@@ -232,7 +232,7 @@ describe('MyDatePicker', () => {
         comp.parseOptions();
 
         fixture.detectChanges();
-        let prevyear = getElement('.header tr td:last-child .headerbtn:first-child');
+        let prevyear = getElement('.btn-prev-year');
         expect(prevyear).not.toBe(null);
 
         prevyear.nativeElement.click();
@@ -252,7 +252,7 @@ describe('MyDatePicker', () => {
         comp.parseOptions();
 
         fixture.detectChanges();
-        let nextyear = getElement('.header tr td:last-child .headerbtn:last-child');
+        let nextyear = getElement('.btn-next-year');
         expect(nextyear).not.toBe(null);
 
         nextyear.nativeElement.click();
@@ -384,7 +384,7 @@ describe('MyDatePicker', () => {
         btnpicker.nativeElement.click();
 
         fixture.detectChanges();
-        let nextmonth = getElement('.header tr td:first-child .headerbtn:last-child');
+        let nextmonth = getElement('.btn-next-month');
         expect(nextmonth).not.toBe(null);
 
         for(let i = 1; i <= 12; i++) {
@@ -1160,7 +1160,7 @@ describe('MyDatePicker', () => {
         expect(days[6].nativeElement.textContent).toBe('Dim');
 
         fixture.detectChanges();
-        let nextmonth = getElement('.header tr td:first-child .headerbtn:last-child');
+        let nextmonth = getElement('.btn-next-month');
         expect(nextmonth).not.toBe(null);
 
         fixture.detectChanges();
