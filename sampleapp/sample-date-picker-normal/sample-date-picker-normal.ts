@@ -11,8 +11,8 @@ const normalSampleTpl: string = require('./sample-date-picker-normal.html');
 export class SampleDatePickerNormal implements OnInit {
 
     private myDatePickerNormalOptions = {
-        todayBtnTxt: 'Today',
-        dateFormat: 'dd mmm yyyy',
+        todayBtnTxt: 'Hoy',
+        dateFormat: 'dd/mm/yyyy',
         firstDayOfWeek: 'mo',
         sunHighlight: true,
         showCurrentDay: true,
