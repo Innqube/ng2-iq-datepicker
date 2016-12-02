@@ -256,6 +256,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.dateChanged.emit({ date: {}, formatted: this.selectionDayTxt, epoc: 0 });
         this.inputFieldChanged.emit({ value: "", dateFormat: this.opts.dateFormat, valid: false });
         this.invalidDate = false;
+        this.propagateChange(null);
     }
 
     openBtnClicked(): void {
