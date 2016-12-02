@@ -57,7 +57,7 @@ export class SampleDatePickerNormal implements OnInit {
         console.log('onInit(): SampleDatePickerNormal');
         this.form = this.formBuilder.group({
             test: '',
-            date: ''
+            date: new Date(1985, 10, 14)
         });
     }
 
