@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 declare var require:any;
 const inlineSampleTpl: string = require('./sample-date-picker-inline.html');
@@ -26,13 +27,20 @@ export class SampleDatePickerInline implements OnInit {
     private selectedTextInline: string = '';
     private border: string = 'none';
     private locale:string = '';
+    private form: FormGroup;
 
     private locales:Array<string> = new Array('en', 'fr', 'ja', 'fi', 'es', 'hu', 'sv', 'nl', 'ru', 'no', 'tr', 'pt-br', 'de');
     
-    constructor() {}
+    constructor(
+        private formBuilder: FormBuilder
+    ) {}
 
     ngOnInit() {
         console.log('onInit(): SampleDatePickerInline');
+        this.form = this.formBuilder.group({
+            test: '',
+            fecha: ''
+        });
     }
 
     onChangeLocale(locale:string) {
@@ -98,6 +106,10 @@ export class SampleDatePickerInline implements OnInit {
 
     getCopyOfOptions() {
         return JSON.parse(JSON.stringify(this.myDatePickerInlineOptions));
+    }
+
+    save(value: any) {
+        console.log(value);
     }
 
 }

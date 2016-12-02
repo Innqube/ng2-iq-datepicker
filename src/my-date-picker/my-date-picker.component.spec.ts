@@ -1,25 +1,26 @@
 ///<reference path="../../node_modules/@types/jasmine/index.d.ts"/>
 
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {DebugElement} from '@angular/core';
-import {DatePicker} from './my-date-picker.component';
-import {InputFocusDirective} from './directives/my-date-picker.input.directive';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { DatePicker } from './my-date-picker.component';
+import { InputFocusDirective } from './directives/my-date-picker.input.directive';
+import { FormGroup, FormControl } from '@angular/forms';
 
 let comp: DatePicker;
 let fixture: ComponentFixture<DatePicker>;
 let de: DebugElement;
 let el: HTMLElement;
 
-function getDateString(date:any):string {
+function getDateString(date: any): string {
     return date.getFullYear() + '-' + (date.getMonth() + 1 < 10 ? '0' + date.getMonth() + 1 : date.getMonth() + 1) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
 }
 
-function getElement(id:string):DebugElement {
+function getElement(id: string): DebugElement {
     return de.query(By.css(id));
 }
 
-function getElements(id:string):Array<DebugElement> {
+function getElements(id: string): Array<DebugElement> {
     return de.queryAll(By.css(id));
 }
 
@@ -63,7 +64,7 @@ describe('MyDatePicker', () => {
 
     it('select current day from the selector and clear', () => {
         let date = new Date();
-        comp.selectedMonth = {monthTxt: '', monthNbr: date.getMonth() + 1, year: date.getFullYear()};
+        comp.selectedMonth = { monthTxt: '', monthNbr: date.getMonth() + 1, year: date.getFullYear() };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -111,7 +112,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select previous month', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -129,7 +130,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select next month', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -147,7 +148,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select previous month january change year', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 1, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -163,7 +164,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select next month december change year', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 12, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 12, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -179,7 +180,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select previous month from selector', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -201,7 +202,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select next month from selector', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -223,7 +224,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select previous year', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -243,7 +244,7 @@ describe('MyDatePicker', () => {
     });
 
     it('select next year', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -264,9 +265,9 @@ describe('MyDatePicker', () => {
     });
 
     it('test calendar year 2016 month one by one - next month button', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 1, year: 2016 };
 
-        comp.options = {firstDayOfWeek: 'mo'};
+        comp.options = { firstDayOfWeek: 'mo' };
 
         comp.parseOptions();
 
@@ -309,9 +310,9 @@ describe('MyDatePicker', () => {
     });
 
     it('test calendar year 2016 month one by one - previous month button', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 12, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 12, year: 2016 };
 
-        comp.options = {firstDayOfWeek: 'mo'};
+        comp.options = { firstDayOfWeek: 'mo' };
 
         comp.parseOptions();
 
@@ -355,8 +356,8 @@ describe('MyDatePicker', () => {
 
     // options
     it('options - dayLabels', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
-        comp.options = {dayLabels:  {su: '1', mo: '2', tu: '3', we: '4', th: '5', fr: '6', sa: '7'}, firstDayOfWeek: 'su'};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
+        comp.options = { dayLabels: { su: '1', mo: '2', tu: '3', we: '4', th: '5', fr: '6', sa: '7' }, firstDayOfWeek: 'su' };
 
         comp.parseOptions();
 
@@ -367,15 +368,15 @@ describe('MyDatePicker', () => {
         fixture.detectChanges();
         let ths = getElements('.caltable thead tr th');
         expect(ths.length).toBe(7);
-        for(let i in ths) {
+        for (let i in ths) {
             let el = ths[i];
             expect(parseInt(el.nativeElement.textContent)).toBe(parseInt(i) + 1);
         }
     });
 
     it('options - monthLabels', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
-        comp.options = {monthLabels:  { 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10', 11: '11', 12: '12' }};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 1, year: 2016 };
+        comp.options = { monthLabels: { 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7', 8: '8', 9: '9', 10: '10', 11: '11', 12: '12' } };
 
         comp.parseOptions();
 
@@ -387,7 +388,7 @@ describe('MyDatePicker', () => {
         let nextmonth = getElement('.btn-next-month');
         expect(nextmonth).not.toBe(null);
 
-        for(let i = 1; i <= 12; i++) {
+        for (let i = 1; i <= 12; i++) {
             fixture.detectChanges();
             let monthLabel = getElement('.headermonthtxt span');
             expect(parseInt(monthLabel.nativeElement.textContent)).toBe(i);
@@ -396,11 +397,11 @@ describe('MyDatePicker', () => {
     });
 
     it('options - date format', () => {
-        comp.options = {dateFormat: 'dd.mm.yyyy', indicateInvalidDate: true};
+        comp.options = { dateFormat: 'dd.mm.yyyy', indicateInvalidDate: true };
 
         comp.parseOptions();
 
-        let value = {target:{value:'2016-08-22'}};
+        let value = { target: { value: '2016-08-22' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(true);
 
@@ -408,46 +409,46 @@ describe('MyDatePicker', () => {
         let invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        value = {target:{value:'2016-08-2'}};
+        value = { target: { value: '2016-08-2' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(true);
 
-        value = {target:{value:'16.09/2016'}};
+        value = { target: { value: '16.09/2016' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(true);
 
-        value = {target:{value:'2016-08-xx'}};
+        value = { target: { value: '2016-08-xx' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(true);
 
-        value = {target:{value:'16.09.999'}};
+        value = { target: { value: '16.09.999' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(true);
 
-        value = {target:{value:'16.09.19999'}};
+        value = { target: { value: '16.09.19999' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(true);
 
-        value = {target:{value:'16.09.2016'}};
+        value = { target: { value: '16.09.2016' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(false);
 
-        comp.options = {dateFormat: 'dd mmm yyyy', indicateInvalidDate: true};
+        comp.options = { dateFormat: 'dd mmm yyyy', indicateInvalidDate: true };
 
         comp.parseOptions();
 
-        value = {target:{value:'2016-08-22'}};
+        value = { target: { value: '2016-08-22' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(true);
 
-        value = {target:{value:'22 Aug 2016'}};
+        value = { target: { value: '22 Aug 2016' } };
         comp.userDateInput(value);
         expect(comp.invalidDate).toBe(false);
     });
 
     it('options - today button text', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
-        comp.options = {todayBtnTxt: 'test text'};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 1, year: 2016 };
+        comp.options = { todayBtnTxt: 'test text' };
 
         comp.parseOptions();
 
@@ -462,8 +463,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - first day of week', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
-        comp.options = {firstDayOfWeek: 'tu'};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
+        comp.options = { firstDayOfWeek: 'tu' };
 
         comp.parseOptions();
 
@@ -482,8 +483,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - sunday highlight', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
-        comp.options = {sunHighlight: true};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
+        comp.options = { sunHighlight: true };
 
         comp.parseOptions();
 
@@ -497,7 +498,7 @@ describe('MyDatePicker', () => {
 
         btnpicker.nativeElement.click();
 
-        comp.options = {sunHighlight: false};
+        comp.options = { sunHighlight: false };
 
         comp.parseOptions();
 
@@ -512,7 +513,7 @@ describe('MyDatePicker', () => {
     });
 
     it('options - current day marked', () => {
-        comp.options = {markCurrentDay: true};
+        comp.options = { markCurrentDay: true };
 
         comp.parseOptions();
 
@@ -526,7 +527,7 @@ describe('MyDatePicker', () => {
 
         btnpicker.nativeElement.click();
 
-        comp.options = {markCurrentDay: false};
+        comp.options = { markCurrentDay: false };
 
         comp.parseOptions();
 
@@ -541,8 +542,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - editable month and year', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 5, year: 2016};
-        comp.options = {editableMonthAndYear: true};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 5, year: 2016 };
+        comp.options = { editableMonthAndYear: true };
 
         comp.parseOptions();
 
@@ -559,7 +560,7 @@ describe('MyDatePicker', () => {
         let monthinput = getElement('.monthinput');
         expect(monthinput).not.toBe(null);
 
-        comp.userMonthInput({target:{value:'jan'}});
+        comp.userMonthInput({ target: { value: 'jan' } });
 
         fixture.detectChanges();
         montlabel = getElement('.headermonthtxt span');
@@ -576,7 +577,7 @@ describe('MyDatePicker', () => {
         let yearinput = getElement('.yearinput');
         expect(yearinput).not.toBe(null);
 
-        comp.userYearInput({target:{value:'2019'}});
+        comp.userYearInput({ target: { value: '2019' } });
 
         fixture.detectChanges();
         yearlabel = getElement('.headeryeartxt span');
@@ -585,8 +586,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - min year', () => {
-        comp.visibleMonth = {monthTxt: 'May', monthNbr: 5, year: 2016};
-        comp.options = {minYear: 2000};
+        comp.visibleMonth = { monthTxt: 'May', monthNbr: 5, year: 2016 };
+        comp.options = { minYear: 2000 };
 
         comp.parseOptions();
 
@@ -603,13 +604,13 @@ describe('MyDatePicker', () => {
         let yearinput = getElement('.yearinput');
         expect(yearinput).not.toBe(null);
 
-        comp.userYearInput({target:{value:1999}});
+        comp.userYearInput({ target: { value: 1999 } });
 
         fixture.detectChanges();
         let invalidyear = getElement('.invalidyear');
         expect(invalidyear).not.toBe(null);
 
-        comp.userYearInput({target:{value:2000}});
+        comp.userYearInput({ target: { value: 2000 } });
 
         fixture.detectChanges();
         yearlabel = getElement('.headeryeartxt span');
@@ -618,8 +619,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - max year', () => {
-        comp.visibleMonth = {monthTxt: 'May', monthNbr: 5, year: 2016};
-        comp.options = {maxYear: 2020};
+        comp.visibleMonth = { monthTxt: 'May', monthNbr: 5, year: 2016 };
+        comp.options = { maxYear: 2020 };
 
         comp.parseOptions();
 
@@ -636,13 +637,13 @@ describe('MyDatePicker', () => {
         let yearinput = getElement('.yearinput');
         expect(yearinput).not.toBe(null);
 
-        comp.userYearInput({target:{value:2021}});
+        comp.userYearInput({ target: { value: 2021 } });
 
         fixture.detectChanges();
         let invalidyear = getElement('.invalidyear');
         expect(invalidyear).not.toBe(null);
 
-        comp.userYearInput({target:{value:2020}});
+        comp.userYearInput({ target: { value: 2020 } });
 
         fixture.detectChanges();
         yearlabel = getElement('.headeryeartxt span');
@@ -651,8 +652,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - disable until', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {disableUntil: {year: 2016, month: 10, day: 5}};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { disableUntil: { year: 2016, month: 10, day: 5 } };
 
         comp.parseOptions();
 
@@ -690,8 +691,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - disable since', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {disableSince: {year: 2016, month: 10, day: 30}};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { disableSince: { year: 2016, month: 10, day: 30 } };
 
         comp.parseOptions();
 
@@ -730,8 +731,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - disable days one by one', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {disableDays: [{year: 2016, month: 10, day: 5}, {year: 2016, month: 10, day: 10}]};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { disableDays: [{ year: 2016, month: 10, day: 5 }, { year: 2016, month: 10, day: 10 }] };
 
         comp.parseOptions();
 
@@ -754,8 +755,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - disable weekends', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {firstDayOfWeek: 'mo', disableWeekends: true};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { firstDayOfWeek: 'mo', disableWeekends: true };
 
         comp.parseOptions();
 
@@ -802,8 +803,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - inline', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {inline: true};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { inline: true };
 
         comp.parseOptions();
 
@@ -817,8 +818,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - height', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {height: '50px'};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { height: '50px' };
 
         comp.parseOptions();
 
@@ -829,8 +830,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - width', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {width: '300px'};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { width: '300px' };
 
         comp.parseOptions();
 
@@ -838,7 +839,7 @@ describe('MyDatePicker', () => {
         expect(de).not.toBe(null);
         expect(de.styles['width']).toBe('300px');
 
-        comp.options = {width: '20%'};
+        comp.options = { width: '20%' };
 
         comp.parseOptions();
 
@@ -848,8 +849,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - align selector right', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {alignSelectorRight: true};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { alignSelectorRight: true };
 
         fixture.detectChanges();
         let btnpicker = getElement('.btnpicker');
@@ -861,7 +862,7 @@ describe('MyDatePicker', () => {
         let alignselectorright = getElement('.alignselectorright');
         expect(alignselectorright).not.toBe(null);
 
-        comp.options = {alignSelectorRight: false};
+        comp.options = { alignSelectorRight: false };
 
         comp.parseOptions();
 
@@ -871,100 +872,57 @@ describe('MyDatePicker', () => {
     });
 
     it('options - indicate invalid date', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {indicateInvalidDate: true, dateFormat: 'dd.mm.yyyy'};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { indicateInvalidDate: true, dateFormat: 'dd.mm.yyyy' };
 
         comp.parseOptions();
 
-        comp.userDateInput({target:{value:'2016-08-22'}});
+        comp.userDateInput({ target: { value: '2016-08-22' } });
         fixture.detectChanges();
         let invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'2016-08-xx'}});
+        comp.userDateInput({ target: { value: '2016-08-xx' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'2016-08-99'}});
+        comp.userDateInput({ target: { value: '2016-08-99' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'10.10.2016'}});
-        fixture.detectChanges();
-        invaliddate = getElement('.invaliddate');
-        expect(invaliddate).toBe(null);
-    });
-    
-    it('options - disableUntil input dates validation', ()=> {
-        comp.options = {
-            indicateInvalidDate: true, 
-            dateFormat: 'dd.mm.yyyy', 
-            disableUntil:{year: 2016, month: 11, day: 4}
-        };
-        
-        comp.parseOptions();
-        
-        comp.userDateInput({target:{value:'11.12.2015'}});
-        fixture.detectChanges();
-        let invaliddate = getElement('.invaliddate');
-        expect(invaliddate).not.toBe(null);
-
-        comp.userDateInput({target:{value:'11.06.2016'}});
-        fixture.detectChanges();
-        invaliddate = getElement('.invaliddate');
-        expect(invaliddate).not.toBe(null);
-
-        comp.userDateInput({target:{value:'04.11.2016'}});
-        fixture.detectChanges();
-        invaliddate = getElement('.invaliddate');
-        expect(invaliddate).not.toBe(null);
-
-        comp.userDateInput({target:{value:'05.11.2016'}});
-        fixture.detectChanges();
-        invaliddate = getElement('.invaliddate');
-        expect(invaliddate).toBe(null);
-
-        comp.options = {
-            indicateInvalidDate: true,
-            dateFormat: 'dd.mm.yyyy',
-            disableUntil:{year: 0, month: 0, day: 0}
-        };
-
-        comp.parseOptions();
-
-        comp.userDateInput({target:{value:'11.12.2015'}});
+        comp.userDateInput({ target: { value: '10.10.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).toBe(null);
     });
 
-    it('options - disableSince input dates validation', ()=> {
+    it('options - disableUntil input dates validation', () => {
         comp.options = {
             indicateInvalidDate: true,
             dateFormat: 'dd.mm.yyyy',
-            disableSince:{year: 2016, month: 11, day: 22}
+            disableUntil: { year: 2016, month: 11, day: 4 }
         };
 
         comp.parseOptions();
 
-        comp.userDateInput({target:{value:'08.12.2017'}});
+        comp.userDateInput({ target: { value: '11.12.2015' } });
         fixture.detectChanges();
         let invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'08.12.2016'}});
+        comp.userDateInput({ target: { value: '11.06.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'23.11.2016'}});
+        comp.userDateInput({ target: { value: '04.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'21.11.2016'}});
+        comp.userDateInput({ target: { value: '05.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).toBe(null);
@@ -972,19 +930,62 @@ describe('MyDatePicker', () => {
         comp.options = {
             indicateInvalidDate: true,
             dateFormat: 'dd.mm.yyyy',
-            disableSince:{year: 0, month: 0, day: 0}
+            disableUntil: { year: 0, month: 0, day: 0 }
         };
 
         comp.parseOptions();
 
-        comp.userDateInput({target:{value:'11.12.2015'}});
+        comp.userDateInput({ target: { value: '11.12.2015' } });
+        fixture.detectChanges();
+        invaliddate = getElement('.invaliddate');
+        expect(invaliddate).toBe(null);
+    });
+
+    it('options - disableSince input dates validation', () => {
+        comp.options = {
+            indicateInvalidDate: true,
+            dateFormat: 'dd.mm.yyyy',
+            disableSince: { year: 2016, month: 11, day: 22 }
+        };
+
+        comp.parseOptions();
+
+        comp.userDateInput({ target: { value: '08.12.2017' } });
+        fixture.detectChanges();
+        let invaliddate = getElement('.invaliddate');
+        expect(invaliddate).not.toBe(null);
+
+        comp.userDateInput({ target: { value: '08.12.2016' } });
+        fixture.detectChanges();
+        invaliddate = getElement('.invaliddate');
+        expect(invaliddate).not.toBe(null);
+
+        comp.userDateInput({ target: { value: '23.11.2016' } });
+        fixture.detectChanges();
+        invaliddate = getElement('.invaliddate');
+        expect(invaliddate).not.toBe(null);
+
+        comp.userDateInput({ target: { value: '21.11.2016' } });
+        fixture.detectChanges();
+        invaliddate = getElement('.invaliddate');
+        expect(invaliddate).toBe(null);
+
+        comp.options = {
+            indicateInvalidDate: true,
+            dateFormat: 'dd.mm.yyyy',
+            disableSince: { year: 0, month: 0, day: 0 }
+        };
+
+        comp.parseOptions();
+
+        comp.userDateInput({ target: { value: '11.12.2015' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).toBe(null);
     });
 
     it('options - disable weekends input date validation', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 11, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 11, year: 2016 };
         comp.options = {
             indicateInvalidDate: true,
             dateFormat: 'dd.mm.yyyy',
@@ -994,97 +995,97 @@ describe('MyDatePicker', () => {
 
         comp.parseOptions();
 
-        comp.userDateInput({target:{value:'05.11.2016'}});
+        comp.userDateInput({ target: { value: '05.11.2016' } });
         fixture.detectChanges();
         let invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'06.11.2016'}});
+        comp.userDateInput({ target: { value: '06.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'12.11.2016'}});
+        comp.userDateInput({ target: { value: '12.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'13.11.2016'}});
+        comp.userDateInput({ target: { value: '13.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'19.11.2016'}});
+        comp.userDateInput({ target: { value: '19.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'20.11.2016'}});
+        comp.userDateInput({ target: { value: '20.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'26.11.2016'}});
+        comp.userDateInput({ target: { value: '26.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'27.11.2016'}});
+        comp.userDateInput({ target: { value: '27.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'04.11.2016'}});
+        comp.userDateInput({ target: { value: '04.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).toBe(null);
     });
 
     it('options - disableDays input date validation', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 11, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 11, year: 2016 };
         comp.options = {
             indicateInvalidDate: true,
             dateFormat: 'dd.mm.yyyy',
             disableDays: [
-                {year: 2016, month: 11, day: 1},
-                {year: 2016, month: 11, day: 3},
-                {year: 2016, month: 11, day: 5},
-                {year: 2016, month: 11, day: 7}
+                { year: 2016, month: 11, day: 1 },
+                { year: 2016, month: 11, day: 3 },
+                { year: 2016, month: 11, day: 5 },
+                { year: 2016, month: 11, day: 7 }
             ],
             firstDayOfWeek: 'mo'
         };
 
         comp.parseOptions();
 
-        comp.userDateInput({target:{value:'01.11.2016'}});
+        comp.userDateInput({ target: { value: '01.11.2016' } });
         fixture.detectChanges();
         let invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'03.11.2016'}});
+        comp.userDateInput({ target: { value: '03.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'05.11.2016'}});
+        comp.userDateInput({ target: { value: '05.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'07.11.2016'}});
+        comp.userDateInput({ target: { value: '07.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).not.toBe(null);
 
-        comp.userDateInput({target:{value:'02.11.2016'}});
+        comp.userDateInput({ target: { value: '02.11.2016' } });
         fixture.detectChanges();
         invaliddate = getElement('.invaliddate');
         expect(invaliddate).toBe(null);
     });
 
     it('options - show date format in placeholder', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {showDateFormatPlaceholder: true, dateFormat: 'dd.mm.yyyy'};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { showDateFormatPlaceholder: true, dateFormat: 'dd.mm.yyyy' };
 
         comp.parseOptions();
 
@@ -1093,7 +1094,7 @@ describe('MyDatePicker', () => {
         expect(selection).not.toBe(null);
         expect(selection.properties['placeholder']).toBe(comp.opts.dateFormat);
 
-        comp.options = {showDateFormatPlaceholder: false, dateFormat: 'dd.mm.yyyy'};
+        comp.options = { showDateFormatPlaceholder: false, dateFormat: 'dd.mm.yyyy' };
 
         comp.parseOptions();
 
@@ -1104,8 +1105,8 @@ describe('MyDatePicker', () => {
     });
 
     it('options - disable component', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 10, year: 2016};
-        comp.options = {componentDisabled: true};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 10, year: 2016 };
+        comp.options = { componentDisabled: true };
         comp.parseOptions();
 
         fixture.detectChanges();
@@ -1127,7 +1128,7 @@ describe('MyDatePicker', () => {
     });
 
     it('locale - use fr locale', () => {
-        comp.selectedMonth = {monthTxt: '', monthNbr: 1, year: 2016};
+        comp.selectedMonth = { monthTxt: '', monthNbr: 1, year: 2016 };
         comp.locale = 'fr';
 
         comp.parseOptions();
@@ -1224,7 +1225,7 @@ describe('MyDatePicker', () => {
         let sunday = getElement('.sunday');
         expect(sunday).not.toBe(null);
 
-        comp.userDateInput({target:{value:'10/10/2016'}});
+        comp.userDateInput({ target: { value: '10/10/2016' } });
         expect(comp.invalidDate).toBe(false);
 
         fixture.detectChanges();
