@@ -95,12 +95,14 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         });
     }
 
-    writeValue(value: Date): void {
-        if (value !== undefined && value instanceof Date) {
+    writeValue(value: string): void {
+        if (value !== undefined) {
+            let date = new Date(value);
+
             this.selectDate({
-                year: value.getFullYear(),
-                month: value.getMonth() + 1,
-                day: value.getDate()
+                year: date.getFullYear(),
+                month: date.getMonth() + 1,
+                day: date.getDate()
             });
         } else {
             this.removeBtnClicked();
