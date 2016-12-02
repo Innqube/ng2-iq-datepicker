@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
-declare var require:any;
+declare var require: any;
 const normalSampleTpl: string = require('./sample-date-picker-normal.html');
 
 @Component({
@@ -26,12 +27,15 @@ export class SampleDatePickerNormal implements OnInit {
         minYear: 1900,
         componentDisabled: false
     };
-    private selectedDateNormal:string = '';
+    private selectedDateNormal: string = '';
 
     private selectedTextNormal: string = '';
     private border: string = 'none';
+    private form: FormGroup;
 
-    constructor() {}
+    constructor(
+        private formBuilder: FormBuilder
+    ) { }
 
     clearDate() {
         this.selectedDateNormal = '';
@@ -51,11 +55,15 @@ export class SampleDatePickerNormal implements OnInit {
 
     ngOnInit() {
         console.log('onInit(): SampleDatePickerNormal');
+        this.form = this.formBuilder.group({
+            test: '',
+            date: ''
+        });
     }
 
-    onDateChanged(event:any) {
+    onDateChanged(event: any) {
         console.log('onDateChanged(): ', event.date, ' - formatted: ', event.formatted, ' - epoc timestamp: ', event.epoc);
-        if(event.formatted !== '') {
+        if (event.formatted !== '') {
             this.selectedTextNormal = 'Formatted: ' + event.formatted + ' - epoc timestamp: ' + event.epoc;
             this.border = '1px solid #CCC';
 
@@ -67,15 +75,19 @@ export class SampleDatePickerNormal implements OnInit {
         }
     }
 
-    onInputFieldChanged(event:any) {
+    onInputFieldChanged(event: any) {
         console.log('onInputFieldChanged(): Value: ', event.value, ' - dateFormat: ', event.dateFormat, ' - valid: ', event.valid);
     }
 
-    onCalendarViewChanged(event:any) {
+    onCalendarViewChanged(event: any) {
         console.log('onCalendarViewChanged(): Year: ', event.year, ' - month: ', event.month, ' - first: ', event.first, ' - last: ', event.last);
     }
 
     getCopyOfOptions() {
         return JSON.parse(JSON.stringify(this.myDatePickerNormalOptions));
+    }
+
+    save(value: any) {
+        console.log(value);
     }
 }

@@ -39,7 +39,7 @@ export class SampleDatePickerInline implements OnInit {
         console.log('onInit(): SampleDatePickerInline');
         this.form = this.formBuilder.group({
             test: '',
-            fecha: ''
+            date: ''
         });
     }
 
