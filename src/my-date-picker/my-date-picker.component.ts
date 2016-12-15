@@ -4,21 +4,17 @@ import { LocaleService } from "./services/my-date-picker.locale.service";
 import { ValidatorService } from "./services/my-date-picker.validator.service";
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl } from '@angular/forms';
 
-// webpack1_
-export declare var require: any;
-export const myDpStyles: string = require("./my-date-picker.component.css");
-export const myDpTpl: string = require("./my-date-picker.component.html");
-// webpack2_
+export const VALUE_ACCESOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => DatePicker),
+    multi: true
+};
 
 @Component({
     selector: "ng2-iq-datepicker",
-    styles: [myDpStyles],
-    template: myDpTpl,
-    providers: [LocaleService, ValidatorService, {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DatePicker),
-      multi: true
-    }],
+    styleUrls: ["./my-date-picker.component.css"],
+    templateUrl: "./my-date-picker.component.html",
+    providers: [LocaleService, ValidatorService, VALUE_ACCESOR],
     encapsulation: ViewEncapsulation.None
 })
 

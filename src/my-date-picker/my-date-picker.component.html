@@ -23,9 +23,9 @@
                         </span>
 
                         <div class="headermonthtxt">
-                            <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width monthinput" maxlength="4" inputFocus [value]="visibleMonth.monthTxt"
+                            <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width monthinput text-center" maxlength="4" inputFocus [value]="visibleMonth.monthTxt"
                                 (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
-                            <span class="form-control input-sm input-min-width monthlabel" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
+                            <span class="form-control input-sm input-min-width monthlabel text-center" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
                         </div>
                         <span class="input-group-btn">
                             <a class="btn btn-sm btn-slim btn-default btn-next-month" (click)="nextMonth()"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -44,9 +44,9 @@
                         </span>
 
                         <div class="headeryeartxt">
-                            <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width yearinput" maxlength="4" inputFocus [value]="visibleMonth.year"
+                            <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width yearinput text-center" maxlength="4" inputFocus [value]="visibleMonth.year"
                                 (keyup)="userYearInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
-                            <span class="form-control input-sm input-min-width yearlabel" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
+                            <span class="form-control input-sm input-min-width yearlabel text-center" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
                         </div>
 
                         <span class="input-group-btn">

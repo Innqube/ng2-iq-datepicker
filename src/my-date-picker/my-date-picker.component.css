@@ -87,9 +87,13 @@
     right: 4px;
 }
 
-.selectedday {
+.selector .currmonth.selectedday {
     background: #337ab7;
     border-radius: 5px;
+}
+
+.selector .currmonth.selectedday span {
+    color: #fff;  
 }
 
 .selectedday.currday:before {
