@@ -4,7 +4,7 @@ import { LocaleService } from "./services/my-date-picker.locale.service";
 import { ValidatorService } from "./services/my-date-picker.validator.service";
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl } from '@angular/forms';
 
-export const VALUE_ACCESOR = {
+const VALUE_ACCESOR = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => DatePicker),
     multi: true
