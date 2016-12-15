@@ -6,8 +6,8 @@ import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl }
 
 // webpack1_
 declare var require: any;
-const myDpStyles: string = require("./my-date-picker.component.css");
-const myDpTpl: string = require("./my-date-picker.component.html");
+export const myDpStyles: string = require("./my-date-picker.component.css");
+export const myDpTpl: string = require("./my-date-picker.component.html");
 // webpack2_
 
 @Component({
