@@ -5,7 +5,7 @@ import { ValidatorService } from "./services/my-date-picker.validator.service";
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl } from '@angular/forms';
 
 // webpack1_
-declare var require: any;
+export declare var require: any;
 export const myDpStyles: string = require("./my-date-picker.component.css");
 export const myDpTpl: string = require("./my-date-picker.component.html");
 // webpack2_
