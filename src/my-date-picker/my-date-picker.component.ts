@@ -2,10 +2,11 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, Eleme
 import { IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions } from "./interfaces/index";
 import { LocaleService } from "./services/my-date-picker.locale.service";
 import { ValidatorService } from "./services/my-date-picker.validator.service";
-import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl } from '@angular/forms';
+import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl } from "@angular/forms";
 
 const VALUE_ACCESOR = {
     provide: NG_VALUE_ACCESSOR,
+    // tslint:disable-next-line:no-forward-ref
     useExisting: forwardRef(() => DatePicker),
     multi: true
 };
@@ -26,7 +27,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
     @Output() dateChanged: EventEmitter<Object> = new EventEmitter();
     @Output() inputFieldChanged: EventEmitter<Object> = new EventEmitter();
     @Output() calendarViewChanged: EventEmitter<Object> = new EventEmitter();
-    
+
     showSelector: boolean = false;
     visibleMonth: IMyMonth = { monthTxt: "", monthNbr: 0, year: 0 };
     selectedMonth: IMyMonth = { monthTxt: "", monthNbr: 0, year: 0 };
@@ -75,7 +76,8 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         componentDisabled: <boolean>false
     };
 
-    propagateChange = (_: any) => { };
+    // tslint:disable-next-line:no-empty
+    propagateChange = (_: any) => {};
 
     constructor(public elem: ElementRef, private renderer: Renderer, private localeService: LocaleService, private validatorService: ValidatorService) {
         this.setLocaleOptions();
@@ -109,9 +111,8 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.propagateChange = fn;
     }
 
-    registerOnTouched(value: any): void {
-
-    }
+    // tslint:disable-next-line:no-empty
+    registerOnTouched(value: any): void {}
 
     setLocaleOptions(): void {
         let opts: IMyOptions = this.localeService.getLocaleOptions(this.locale);
