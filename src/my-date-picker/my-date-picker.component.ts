@@ -81,20 +81,11 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
 
     constructor(public elem: ElementRef, private renderer: Renderer, private localeService: LocaleService, private validatorService: ValidatorService) {
         this.setLocaleOptions();
-
         this.today = new Date();
-        renderer.listenGlobal('document', 'click', (event: any) => {
-            if (this.showSelector && event.target && this.elem.nativeElement !== event.target && !this.elem.nativeElement.contains(event.target)) {
-                this.showSelector = false;
-            }
-            if (this.opts.editableMonthAndYear && event.target && this.elem.nativeElement.contains(event.target)) {
-                this.resetMonthYearEdit();
-            }
-        });
     }
 
     writeValue(value: string): void {
-        if (value !== undefined && value !== null) {
+        if (value) {
             let date = new Date(value);
 
             this.selectDate({
