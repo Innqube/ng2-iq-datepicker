@@ -94,7 +94,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
     }
 
     writeValue(value: string): void {
-        if (value !== undefined) {
+        if (value !== undefined && value !== null) {
             let date = new Date(value);
 
             this.selectDate({
