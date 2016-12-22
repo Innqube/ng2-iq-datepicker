@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation, Renderer, forwardRef } from "@angular/core";
-import { IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions } from "./interfaces/index";
-import { LocaleService } from "./services/my-date-picker.locale.service";
-import { ValidatorService } from "./services/my-date-picker.validator.service";
-import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl } from "@angular/forms";
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ElementRef, ViewEncapsulation, Renderer, forwardRef } from '@angular/core';
+import { IMyDate, IMyMonth, IMyWeek, IMyDayLabels, IMyMonthLabels, IMyOptions } from './interfaces/index';
+import { LocaleService } from './services/my-date-picker.locale.service';
+import { ValidatorService } from './services/my-date-picker.validator.service';
+import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR, AbstractControl } from '@angular/forms';
 
 const VALUE_ACCESOR = {
     provide: NG_VALUE_ACCESSOR,
@@ -12,9 +12,9 @@ const VALUE_ACCESOR = {
 };
 
 @Component({
-    selector: "ng2-iq-datepicker",
-    styleUrls: ["./my-date-picker.component.css"],
-    templateUrl: "./my-date-picker.component.html",
+    selector: 'ng2-iq-datepicker',
+    styleUrls: ['./my-date-picker.component.css'],
+    templateUrl: './my-date-picker.component.html',
     providers: [LocaleService, ValidatorService, VALUE_ACCESOR],
     encapsulation: ViewEncapsulation.None
 })
@@ -29,16 +29,16 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
     @Output() calendarViewChanged: EventEmitter<Object> = new EventEmitter();
 
     showSelector: boolean = false;
-    visibleMonth: IMyMonth = { monthTxt: "", monthNbr: 0, year: 0 };
-    selectedMonth: IMyMonth = { monthTxt: "", monthNbr: 0, year: 0 };
+    visibleMonth: IMyMonth = { monthTxt: '', monthNbr: 0, year: 0 };
+    selectedMonth: IMyMonth = { monthTxt: '', monthNbr: 0, year: 0 };
     selectedDate: IMyDate = { year: 0, month: 0, day: 0 };
     weekDays: Array<string> = [];
     dates: Array<Object> = [];
-    selectionDayTxt: string = "";
+    selectionDayTxt: string = '';
     invalidDate: boolean = false;
     dayIdx: number = 0;
     today: Date = null;
-    weekDayOpts: Array<string> = ["su", "mo", "tu", "we", "th", "fr", "sa"];
+    weekDayOpts: Array<string> = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
 
     editMonth: boolean = false;
     invalidMonth: boolean = false;
@@ -53,18 +53,18 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
     opts: IMyOptions = {
         dayLabels: <IMyDayLabels>{},
         monthLabels: <IMyMonthLabels>{},
-        dateFormat: <string>"",
-        todayBtnTxt: <string>"",
-        firstDayOfWeek: <string>"",
+        dateFormat: <string>'',
+        todayBtnTxt: <string>'',
+        firstDayOfWeek: <string>'',
         sunHighlight: <boolean>true,
         markCurrentDay: <boolean>true,
         disableUntil: <IMyDate>{ year: 0, month: 0, day: 0 },
         disableSince: <IMyDate>{ year: 0, month: 0, day: 0 },
         disableDays: <Array<IMyDate>>[],
         disableWeekends: <boolean>false,
-        height: <string>"34px",
-        width: <string>"100%",
-        selectionTxtFontSize: <string>"18px",
+        height: <string>'34px',
+        width: <string>'100%',
+        selectionTxtFontSize: <string>'18px',
         inline: <boolean>false,
         alignSelectorRight: <boolean>false,
         indicateInvalidDate: <boolean>true,
@@ -83,7 +83,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.setLocaleOptions();
 
         this.today = new Date();
-        renderer.listenGlobal("document", "click", (event: any) => {
+        renderer.listenGlobal('document', 'click', (event: any) => {
             if (this.showSelector && event.target && this.elem.nativeElement !== event.target && !this.elem.nativeElement.contains(event.target)) {
                 this.showSelector = false;
             }
@@ -221,30 +221,30 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
             let idx: number = this.dayIdx;
             for (let i = 0; i < this.weekDayOpts.length; i++) {
                 this.weekDays.push(this.opts.dayLabels[this.weekDayOpts[idx]]);
-                idx = this.weekDayOpts[idx] === "sa" ? 0 : idx + 1;
+                idx = this.weekDayOpts[idx] === 'sa' ? 0 : idx + 1;
             }
         }
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.hasOwnProperty("locale")) {
-            this.locale = changes["locale"].currentValue;
+        if (changes.hasOwnProperty('locale')) {
+            this.locale = changes['locale'].currentValue;
         }
 
-        if (changes.hasOwnProperty("options")) {
-            this.options = changes["options"].currentValue;
+        if (changes.hasOwnProperty('options')) {
+            this.options = changes['options'].currentValue;
         }
 
         this.weekDays.length = 0;
         this.parseOptions();
 
-        if (changes.hasOwnProperty("defaultMonth")) {
-            this.selectedMonth = this.parseSelectedMonth((changes["defaultMonth"].currentValue).toString());
+        if (changes.hasOwnProperty('defaultMonth')) {
+            this.selectedMonth = this.parseSelectedMonth((changes['defaultMonth'].currentValue).toString());
         }
 
-        if (changes.hasOwnProperty("selDate")) {
-            this.selectionDayTxt = changes["selDate"].currentValue;
-            if (this.selectionDayTxt !== "") {
+        if (changes.hasOwnProperty('selDate')) {
+            this.selectionDayTxt = changes['selDate'].currentValue;
+            if (this.selectionDayTxt !== '') {
                 this.selectedDate = this.parseSelectedDate(this.selectionDayTxt);
             }
             else {
@@ -258,10 +258,10 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
 
     removeBtnClicked(): void {
         // Remove selected date button clicked
-        this.selectionDayTxt = "";
+        this.selectionDayTxt = '';
         this.selectedDate = { year: 0, month: 0, day: 0 };
         this.dateChanged.emit({ date: {}, formatted: this.selectionDayTxt, epoc: 0 });
-        this.inputFieldChanged.emit({ value: "", dateFormat: this.opts.dateFormat, valid: false });
+        this.inputFieldChanged.emit({ value: '', dateFormat: this.opts.dateFormat, valid: false });
         this.invalidDate = false;
         this.propagateChange(null);
     }
@@ -378,13 +378,13 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
 
     preZero(val: string): string {
         // Prepend zero if smaller than 10
-        return parseInt(val) < 10 ? "0" + val : val;
+        return parseInt(val) < 10 ? '0' + val : val;
     }
 
     formatDate(val: any): string {
         // Returns formatted date string, if mmm is part of dateFormat returns month as a string
-        let formatted: string = this.opts.dateFormat.replace("yyyy", val.year).replace("dd", this.preZero(val.day));
-        return this.opts.dateFormat.indexOf("mmm") !== -1 ? formatted.replace("mmm", this.monthText(val.month)) : formatted.replace("mm", this.preZero(val.month));
+        let formatted: string = this.opts.dateFormat.replace('yyyy', val.year).replace('dd', this.preZero(val.day));
+        return this.opts.dateFormat.indexOf('mmm') !== -1 ? formatted.replace('mmm', this.monthText(val.month)) : formatted.replace('mm', this.preZero(val.month));
     }
 
     monthText(m: number): string {
@@ -492,14 +492,14 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
 
     parseSelectedDate(ds: string): IMyDate {
         let date: IMyDate = { day: 0, month: 0, year: 0 };
-        if (ds !== "") {
-            date.day = this.validatorService.parseDatePartNumber(this.opts.dateFormat, ds, "dd");
+        if (ds !== '') {
+            date.day = this.validatorService.parseDatePartNumber(this.opts.dateFormat, ds, 'dd');
 
-            date.month = this.opts.dateFormat.indexOf("mmm") !== -1
-                ? this.validatorService.parseDatePartMonthName(this.opts.dateFormat, ds, "mmm", this.opts.monthLabels)
-                : this.validatorService.parseDatePartNumber(this.opts.dateFormat, ds, "mm");
+            date.month = this.opts.dateFormat.indexOf('mmm') !== -1
+                ? this.validatorService.parseDatePartMonthName(this.opts.dateFormat, ds, 'mmm', this.opts.monthLabels)
+                : this.validatorService.parseDatePartNumber(this.opts.dateFormat, ds, 'mm');
 
-            date.year = this.validatorService.parseDatePartNumber(this.opts.dateFormat, ds, "yyyy");
+            date.year = this.validatorService.parseDatePartNumber(this.opts.dateFormat, ds, 'yyyy');
         }
         return date;
     }
