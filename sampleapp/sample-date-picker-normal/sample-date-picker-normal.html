@@ -19,7 +19,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" *ngIf="form.controls.date">
             <ng2-iq-datepicker [options]="myDatePickerNormalOptions" (dateChanged)="onDateChanged($event)" (inputFieldChanged)="onInputFieldChanged($event)"
                 (calendarViewChanged)="onCalendarViewChanged($event)" [selDate]="selectedDateNormal" locale="es" formControlName="date"></ng2-iq-datepicker>
         </div>

@@ -5,7 +5,7 @@
             [ngStyle]="{'height': opts.height, 'line-height': opts.height}" [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField"
             (focus)="showCalendar()" (blur)="onBlur()" />
         <div class="input-group-btn">
-            <button type="button" class="btn btn-default btnclear" *ngIf="selectionDayTxt.length>0" (click)="clearValue()" [disabled]="opts.componentDisabled">
+            <button type="button" class="btn btnclear" *ngIf="selectionDayTxt.length>0" (click)="clearValue()" [disabled]="opts.componentDisabled">
                 <i class="glyphicon glyphicon-remove"></i>
             </button>
             <button type="button" class="btn btn-default btnpicker" (click)="openBtnClicked()" [disabled]="opts.componentDisabled">

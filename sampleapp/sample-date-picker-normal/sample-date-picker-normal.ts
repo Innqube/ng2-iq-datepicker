@@ -56,8 +56,7 @@ export class SampleDatePickerNormal implements OnInit {
     ngOnInit() {
         console.log('onInit(): SampleDatePickerNormal');
         this.form = this.formBuilder.group({
-            test: '',
-            date: new Date(1985, 10, 14)
+            date: new FormControl( new Date(1985, 10, 14))
         });
     }
 
