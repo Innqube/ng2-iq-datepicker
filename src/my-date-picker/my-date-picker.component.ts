@@ -94,7 +94,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
                 day: date.getDate()
             });
         } else {
-            this.removeBtnClicked();
+            this.clearValue();
         }
     }
 
@@ -151,7 +151,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.invalidDate = false;
 
         if (event.target.value.length === 0) {
-            this.removeBtnClicked();
+            this.clearValue();
         } else {
             let date: IMyDate = this.validatorService.isDateValid(event.target.value, this.opts.dateFormat, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableWeekends, this.opts.disableDays, this.opts.monthLabels);
 
@@ -248,7 +248,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
                 this.selectedDate = this.parseSelectedDate(this.selectionDayTxt);
             }
             else {
-                this.removeBtnClicked();
+                this.clearValue();
             }
         }
         if (this.opts.inline) {
@@ -256,7 +256,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         }
     }
 
-    removeBtnClicked(): void {
+    clearValue(): void {
         // Remove selected date button clicked
         this.selectionDayTxt = '';
         this.selectedDate = { year: 0, month: 0, day: 0 };
@@ -521,7 +521,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.hideCalendar();
 
         if (this.invalidDate) {
-            this.removeBtnClicked();
+            this.clearValue();
         }
     }
 }

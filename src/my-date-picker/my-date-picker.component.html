@@ -2,12 +2,10 @@
     <div *ngIf="!opts.inline" class="input-group">
         <input type="text" class="form-control text-center selection" [attr.maxlength]="opts.dateFormat.length" [ngClass]="{'invaliddate': invalidDate&&opts.indicateInvalidDate}"
             placeholder="{{opts.showDateFormatPlaceholder?opts.dateFormat:''}}" (keyup)="userDateInput($event)" [value]="selectionDayTxt"
-            [ngStyle]="{'height': opts.height, 'line-height': opts.height}"
-            [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField"
-            (focus)="showCalendar()" (blur)="onBlur()"
-            />
+            [ngStyle]="{'height': opts.height, 'line-height': opts.height}" [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField"
+            (focus)="showCalendar()" (blur)="onBlur()" />
         <div class="input-group-btn">
-            <button type="button" class="btn btn-default btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [disabled]="opts.componentDisabled">
+            <button type="button" class="btn btn-default btnclear" *ngIf="selectionDayTxt.length>0" (click)="clearValue()" [disabled]="opts.componentDisabled">
                 <i class="glyphicon glyphicon-remove"></i>
             </button>
             <button type="button" class="btn btn-default btnpicker" (click)="openBtnClicked()" [disabled]="opts.componentDisabled">
@@ -19,60 +17,60 @@
         <div class="row selector-header">
             <div class="col-sm-4">
                 <div style="float:left">
-                    <div class="input-group">
-                        <span class="input-group-btn">
+<div class="input-group">
+    <span class="input-group-btn">
                             <a class="btn btn-sm btn-slim btn-default btn-prev-month" (click)="prevMonth()"><i class="glyphicon glyphicon-chevron-left"></i></a>
                         </span>
 
-                        <div class="headermonthtxt">
-                            <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width monthinput text-center" maxlength="4" inputFocus [value]="visibleMonth.monthTxt"
-                                (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
-                            <span class="form-control input-sm input-min-width monthlabel text-center" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
-                        </div>
-                        <span class="input-group-btn">
+    <div class="headermonthtxt">
+        <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width monthinput text-center" maxlength="4" inputFocus
+            [value]="visibleMonth.monthTxt" (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
+        <span class="form-control input-sm input-min-width monthlabel text-center" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
+    </div>
+    <span class="input-group-btn">
                             <a class="btn btn-sm btn-slim btn-default btn-next-month" (click)="nextMonth()"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 text-center">
-                <button type="button" class="btn btn-sm btn-default headertodaybtn" (click)="todayClicked()">{{opts.todayBtnTxt}}</button>
-            </div>
-            <div class="col-sm-4">
-                <div style="float:right">
-                    <div class="input-group">
-                        <span class="input-group-btn">
+    </span>
+</div>
+</div>
+</div>
+<div class="col-sm-4 text-center">
+    <button type="button" class="btn btn-sm btn-default headertodaybtn" (click)="todayClicked()">{{opts.todayBtnTxt}}</button>
+</div>
+<div class="col-sm-4">
+    <div style="float:right">
+<div class="input-group">
+    <span class="input-group-btn">
                             <a class="btn btn-sm btn-slim btn-default btn-prev-year" (click)="prevYear()"><i class="glyphicon glyphicon-chevron-left"></i></a>
                         </span>
 
-                        <div class="headeryeartxt">
-                            <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width yearinput text-center" maxlength="4" inputFocus [value]="visibleMonth.year"
-                                (keyup)="userYearInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
-                            <span class="form-control input-sm input-min-width yearlabel text-center" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
-                        </div>
-
-                        <span class="input-group-btn">
-                            <a class="btn btn-sm btn-slim btn-default btn-next-year" (click)="nextYear()"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <table class="caltable">
-            <thead>
-                <tr>
-                    <th class="weekdaytitle" *ngFor="let d of weekDays">{{d}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let w of dates">
-                    <td class="daycell" *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH&&!d.disabled, 'currday':d.currDay&&opts.markCurrentDay, 'selectedday':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===CURR_MONTH, 'disabled': d.disabled, 'tablesingleday': d.cmo===CURR_MONTH&&!d.disabled}"
-                        (mousedown)="!d.disabled && cellClicked(d);$event.stopPropagation()">
-                        <div [ngClass]="{'prevmonth':d.cmo===PREV_MONTH,'currmonth':d.cmo===CURR_MONTH,'nextmonth':d.cmo===NEXT_MONTH,'sunday':d.dayNbr === 0 && opts.sunHighlight}">
-                            <span [ngClass]="{'sundayDim': opts.sunHighlight && d.dayNbr === 0 && (d.cmo===PREV_MONTH || d.cmo===NEXT_MONTH || d.disabled)}">{{d.dateObj.day}}</span>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="headeryeartxt">
+        <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width yearinput text-center" maxlength="4" inputFocus
+            [value]="visibleMonth.year" (keyup)="userYearInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidyear': invalidYear}">
+        <span class="form-control input-sm input-min-width yearlabel text-center" *ngIf="!editYear" (click)="editYearClicked($event)">{{visibleMonth.year}}</span>
     </div>
+
+    <span class="input-group-btn">
+                            <a class="btn btn-sm btn-slim btn-default btn-next-year" (click)="nextYear()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </span>
+</div>
+</div>
+</div>
+</div>
+<table class="caltable">
+    <thead>
+        <tr>
+            <th class="weekdaytitle" *ngFor="let d of weekDays">{{d}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let w of dates">
+            <td class="daycell" *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH&&!d.disabled, 'currday':d.currDay&&opts.markCurrentDay, 'selectedday':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===CURR_MONTH, 'disabled': d.disabled, 'tablesingleday': d.cmo===CURR_MONTH&&!d.disabled}"
+                (mousedown)="!d.disabled && cellClicked(d);$event.stopPropagation()">
+                <div [ngClass]="{'prevmonth':d.cmo===PREV_MONTH,'currmonth':d.cmo===CURR_MONTH,'nextmonth':d.cmo===NEXT_MONTH,'sunday':d.dayNbr === 0 && opts.sunHighlight}">
+                    <span [ngClass]="{'sundayDim': opts.sunHighlight && d.dayNbr === 0 && (d.cmo===PREV_MONTH || d.cmo===NEXT_MONTH || d.disabled)}">{{d.dateObj.day}}</span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
