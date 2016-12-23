@@ -4,7 +4,7 @@
             placeholder="{{opts.showDateFormatPlaceholder?opts.dateFormat:''}}" (keyup)="userDateInput($event)" [value]="selectionDayTxt"
             [ngStyle]="{'height': opts.height, 'line-height': opts.height}"
             [disabled]="opts.componentDisabled" [readonly]="!opts.editableDateField"
-            (focus)="showCalendar()" (blur)="hideCalendar()"
+            (focus)="showCalendar()" (blur)="onBlur()"
             />
         <div class="input-group-btn">
             <button type="button" class="btn btn-default btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [disabled]="opts.componentDisabled">

@@ -149,20 +149,29 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
 
     userDateInput(event: any): void {
         this.invalidDate = false;
+
         if (event.target.value.length === 0) {
             this.removeBtnClicked();
-        }
-        else {
+        } else {
             let date: IMyDate = this.validatorService.isDateValid(event.target.value, this.opts.dateFormat, this.opts.minYear, this.opts.maxYear, this.opts.disableUntil, this.opts.disableSince, this.opts.disableWeekends, this.opts.disableDays, this.opts.monthLabels);
+
             if (date.day !== 0 && date.month !== 0 && date.year !== 0) {
-                this.selectDate({ day: date.day, month: date.month, year: date.year });
-            }
-            else {
+                this.selectDate({
+                    day: date.day,
+                    month: date.month,
+                    year: date.year
+                });
+            } else {
                 this.invalidDate = true;
             }
         }
+
         if (this.invalidDate) {
-            this.inputFieldChanged.emit({ value: event.target.value, dateFormat: this.opts.dateFormat, valid: !(event.target.value.length === 0 || this.invalidDate) });
+            this.inputFieldChanged.emit({
+                value: event.target.value,
+                dateFormat: this.opts.dateFormat,
+                valid: !(event.target.value.length === 0 || this.invalidDate)
+            });
         }
     }
 
@@ -506,5 +515,13 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
 
     hideCalendar() {
         this.showSelector = false;
+    }
+
+    onBlur() {
+        this.hideCalendar();
+
+        if (this.invalidDate) {
+            this.removeBtnClicked();
+        }
     }
 }
