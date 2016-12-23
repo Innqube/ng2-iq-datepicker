@@ -75,6 +75,7 @@ describe('MyDatePicker', () => {
         expect(currday).not.toBe(null);
 
         currday.triggerEventHandler('mousedown', {
+            // tslint:disable-next-line:no-empty
             stopPropagation: () => {}
         });
 
@@ -308,7 +309,7 @@ describe('MyDatePicker', () => {
             comp.nextMonth();
 
             i++;
-        } while (i < 12)
+        } while (i < 12);
     });
 
     it('test calendar year 2016 month one by one - previous month button', () => {
@@ -353,7 +354,7 @@ describe('MyDatePicker', () => {
             comp.prevMonth();
 
             i--;
-        } while (i >= 0)
+        } while (i >= 0);
     });
 
     // options
@@ -687,6 +688,7 @@ describe('MyDatePicker', () => {
         expect(selectableDays.length).toBe(26);
 
         selectableDays[0].triggerEventHandler('mousedown', {
+            // tslint:disable-next-line:no-empty
             stopPropagation: () => {}
         });
         fixture.detectChanges();
@@ -728,6 +730,7 @@ describe('MyDatePicker', () => {
         expect(selectableDays.length).toBe(29);
 
         selectableDays[5].triggerEventHandler('mousedown', {
+            // tslint:disable-next-line:no-empty
             stopPropagation: () => {}
         });
 
@@ -802,6 +805,7 @@ describe('MyDatePicker', () => {
         expect(selectableDays.length).toBe(21);
 
         selectableDays[0].triggerEventHandler('mousedown', {
+            // tslint:disable-next-line:no-empty
             stopPropagation: () => {}
         });
 
