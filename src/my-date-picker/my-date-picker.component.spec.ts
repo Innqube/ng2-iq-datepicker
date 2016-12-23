@@ -74,7 +74,9 @@ describe('MyDatePicker', () => {
         let currday = getElement('.currday');
         expect(currday).not.toBe(null);
 
-        currday.nativeElement.click();
+        currday.triggerEventHandler('mousedown', {
+            stopPropagation: () => {}
+        });
 
         let dateStr = getDateString(date);
         fixture.detectChanges();
@@ -98,7 +100,7 @@ describe('MyDatePicker', () => {
         let today = getElement('.headertodaybtn');
         expect(today).not.toBe(null);
 
-        today.nativeElement.click();
+        today.triggerEventHandler('mousedown', null);
 
         let dateStr = getDateString(date);
         fixture.detectChanges();
@@ -684,7 +686,9 @@ describe('MyDatePicker', () => {
         expect(selectableDays).not.toBe(null);
         expect(selectableDays.length).toBe(26);
 
-        selectableDays[0].nativeElement.click();
+        selectableDays[0].triggerEventHandler('mousedown', {
+            stopPropagation: () => {}
+        });
         fixture.detectChanges();
         selection = getElement('.selection');
         expect(selection.nativeElement.value).toContain('2016-10-06');
@@ -723,7 +727,9 @@ describe('MyDatePicker', () => {
         expect(selectableDays).not.toBe(null);
         expect(selectableDays.length).toBe(29);
 
-        selectableDays[5].nativeElement.click();
+        selectableDays[5].triggerEventHandler('mousedown', {
+            stopPropagation: () => {}
+        });
 
         fixture.detectChanges();
         selection = getElement('.selection');
@@ -795,7 +801,9 @@ describe('MyDatePicker', () => {
         expect(selectableDays).not.toBe(null);
         expect(selectableDays.length).toBe(21);
 
-        selectableDays[0].nativeElement.click();
+        selectableDays[0].triggerEventHandler('mousedown', {
+            stopPropagation: () => {}
+        });
 
         fixture.detectChanges();
         selection = getElement('.selection');
