@@ -8,7 +8,7 @@
             <button type="button" class="btn btn-default btnclear" *ngIf="selectionDayTxt.length>0" (click)="removeBtnClicked()" [disabled]="opts.componentDisabled">
                 <i class="glyphicon glyphicon-remove"></i>
             </button>
-            <button class="btn btn-default btnpicker" (click)="openBtnClicked()" [disabled]="opts.componentDisabled">
+            <button type="button" class="btn btn-default btnpicker" (click)="openBtnClicked()" [disabled]="opts.componentDisabled">
                 <i class="glyphicon glyphicon-calendar"></i>
             </button>
         </div>
