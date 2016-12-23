@@ -498,4 +498,13 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
     parseSelectedMonth(ms: string): IMyMonth {
         return this.validatorService.parseDefaultMonth(ms);
     }
+
+    showCalendar() {
+        this.showSelector = true;
+        this.setVisibleMonth();
+    }
+
+    hideCalendar() {
+        this.showSelector = false;
+    }
 }
