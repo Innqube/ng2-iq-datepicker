@@ -297,7 +297,8 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.generateCalendar(m, y);
     }
 
-    prevMonth(): void {
+    prevMonth(ev: any): void {
+        ev.preventDefault();
         let d: Date = this.getDate(this.visibleMonth.year, this.visibleMonth.monthNbr, 1);
         d.setMonth(d.getMonth() - 1);
 
@@ -308,7 +309,8 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.generateCalendar(m, y);
     }
 
-    nextMonth(): void {
+    nextMonth(ev: any): void {
+        ev.preventDefault();
         let d: Date = this.getDate(this.visibleMonth.year, this.visibleMonth.monthNbr, 1);
         d.setMonth(d.getMonth() + 1);
 
@@ -319,7 +321,8 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.generateCalendar(m, y);
     }
 
-    prevYear(): void {
+    prevYear(ev: any): void {
+        ev.preventDefault();
         if (this.visibleMonth.year - 1 < this.opts.minYear) {
             return;
         }
@@ -327,7 +330,8 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         this.generateCalendar(this.visibleMonth.monthNbr, this.visibleMonth.year);
     }
 
-    nextYear(): void {
+    nextYear(ev: any): void {
+        ev.preventDefault();
         if (this.visibleMonth.year + 1 > this.opts.maxYear) {
             return;
         }
@@ -346,19 +350,17 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         }
     }
 
-    cellClicked(cell: any): void {
+    cellClicked(ev: any, cell: any): void {
         // Cell clicked on the calendar
         if (cell.cmo === this.PREV_MONTH) {
             // Previous month of day
-            this.prevMonth();
-        }
-        else if (cell.cmo === this.CURR_MONTH) {
+            this.prevMonth(ev);
+        } else if (cell.cmo === this.CURR_MONTH) {
             // Current month of day
             this.selectDate(cell.dateObj);
-        }
-        else if (cell.cmo === this.NEXT_MONTH) {
+        } else if (cell.cmo === this.NEXT_MONTH) {
             // Next month of day
-            this.nextMonth();
+            this.nextMonth(ev);
         }
         this.resetMonthYearEdit();
     }

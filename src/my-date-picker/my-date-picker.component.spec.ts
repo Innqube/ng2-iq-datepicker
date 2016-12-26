@@ -125,7 +125,9 @@ describe('MyDatePicker', () => {
         let prevmonth = getElement('.btn-prev-month');
         expect(prevmonth).not.toBe(null);
 
-        prevmonth.nativeElement.click();
+        prevmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
 
         expect(comp.visibleMonth.monthTxt).toBe('Apr');
         expect(comp.visibleMonth.monthNbr).toBe(4);
@@ -143,7 +145,9 @@ describe('MyDatePicker', () => {
         let nextmonth = getElement('.btn-next-month');
         expect(nextmonth).not.toBe(null);
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
 
         expect(comp.visibleMonth.monthTxt).toBe('Jun');
         expect(comp.visibleMonth.monthNbr).toBe(6);
@@ -161,7 +165,9 @@ describe('MyDatePicker', () => {
         let prevmonth = getElement('.btn-prev-year');
         expect(prevmonth).not.toBe(null);
 
-        prevmonth.nativeElement.click();
+        prevmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
 
         expect(comp.visibleMonth.year).toBe(2015);
     });
@@ -177,7 +183,9 @@ describe('MyDatePicker', () => {
         let nextmonth = getElement('.btn-next-year');
         expect(nextmonth).not.toBe(null);
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
 
         expect(comp.visibleMonth.year).toBe(2017);
     });
@@ -195,11 +203,15 @@ describe('MyDatePicker', () => {
         let prevmonth = getElement('.btn-prev-month');
         expect(prevmonth).not.toBe(null);
 
-        prevmonth.nativeElement.click();
+        prevmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         expect(comp.visibleMonth.monthNbr).toBe(4);
         expect(comp.visibleMonth.monthTxt).toBe('Apr');
 
-        prevmonth.nativeElement.click();
+        prevmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         expect(comp.visibleMonth.monthNbr).toBe(3);
         expect(comp.visibleMonth.monthTxt).toBe('Mar');
     });
@@ -217,11 +229,15 @@ describe('MyDatePicker', () => {
         let nextmonth = getElement('.btn-next-month');
         expect(nextmonth).not.toBe(null);
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         expect(comp.visibleMonth.monthNbr).toBe(6);
         expect(comp.visibleMonth.monthTxt).toBe('Jun');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         expect(comp.visibleMonth.monthNbr).toBe(7);
         expect(comp.visibleMonth.monthTxt).toBe('Jul');
     });
@@ -239,7 +255,9 @@ describe('MyDatePicker', () => {
         let prevyear = getElement('.btn-prev-year');
         expect(prevyear).not.toBe(null);
 
-        prevyear.nativeElement.click();
+        prevyear.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         let yearLabel = getElement('.headeryeartxt span');
         expect(yearLabel).not.toBe(null);
@@ -259,7 +277,9 @@ describe('MyDatePicker', () => {
         let nextyear = getElement('.btn-next-year');
         expect(nextyear).not.toBe(null);
 
-        nextyear.nativeElement.click();
+        nextyear.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
 
         fixture.detectChanges();
         let yearLabel = getElement('.headeryeartxt span');
@@ -306,7 +326,10 @@ describe('MyDatePicker', () => {
             expect(currmonth[41]).not.toBe(null);
             expect(currmonth[41].nativeElement.textContent.trim()).toBe(endDate[i]);
 
-            comp.nextMonth();
+            let nextMonthButton = getElement('.btn-next-month');
+            nextMonthButton.triggerEventHandler('mousedown', {
+                preventDefault: () => {}
+            });
 
             i++;
         } while (i < 12);
@@ -351,7 +374,10 @@ describe('MyDatePicker', () => {
             expect(currmonth[41]).not.toBe(null);
             expect(currmonth[41].nativeElement.textContent.trim()).toBe(endDate[i]);
 
-            comp.prevMonth();
+            let prevMonthButton = getElement('.btn-prev-month');
+            prevMonthButton.triggerEventHandler('mousedown', {
+                preventDefault: () => {}
+            });
 
             i--;
         } while (i >= 0);
@@ -395,7 +421,9 @@ describe('MyDatePicker', () => {
             fixture.detectChanges();
             let monthLabel = getElement('.headermonthtxt span');
             expect(parseInt(monthLabel.nativeElement.textContent)).toBe(i);
-            nextmonth.nativeElement.click();
+            nextmonth.triggerEventHandler('mousedown', {
+                preventDefault: () => {}
+            });
         }
     });
 
@@ -1168,57 +1196,79 @@ describe('MyDatePicker', () => {
         let monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Jan');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Fév');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Mar');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Avr');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Mai');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Juin');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Juil');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Aoû');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Sep');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Oct');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Nov');
 
-        nextmonth.nativeElement.click();
+        nextmonth.triggerEventHandler('mousedown', {
+            preventDefault: () => {}
+        });
         fixture.detectChanges();
         monthLabel = getElement('.headermonthtxt span');
         expect(monthLabel.nativeElement.textContent).toBe('Déc');

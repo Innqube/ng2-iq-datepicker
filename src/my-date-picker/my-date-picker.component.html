@@ -17,22 +17,22 @@
         <div class="row selector-header">
             <div class="col-sm-4 col-xs-4">
                 <div style="float:left">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                                                <a class="btn btn-sm btn-slim btn-default btn-prev-month" (click)="prevMonth()"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                                            </span>
+<div class="input-group">
+    <span class="input-group-btn">
+        <a class="btn btn-sm btn-slim btn-default btn-prev-month" (mousedown)="prevMonth($event)"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    </span>
 
-                        <div class="headermonthtxt">
-                            <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width monthinput text-center" maxlength="4" inputFocus
-                                [value]="visibleMonth.monthTxt" (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
-                            <span class="form-control input-sm input-min-width monthlabel text-center" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
-                        </div>
-                        <span class="input-group-btn">
-                                                <a class="btn btn-sm btn-slim btn-default btn-next-month" (click)="nextMonth()"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+    <div class="headermonthtxt">
+        <input type="text" *ngIf="editMonth" class="form-control input-sm input-min-width monthinput text-center" maxlength="4" inputFocus
+            [value]="visibleMonth.monthTxt" (keyup)="userMonthInput($event)" (click)="$event.stopPropagation()" [ngClass]="{'invalidmonth': invalidMonth}">
+        <span class="form-control input-sm input-min-width monthlabel text-center" *ngIf="!editMonth" (click)="editMonthClicked($event)">{{visibleMonth.monthTxt}}</span>
+    </div>
+    <span class="input-group-btn">
+        <a class="btn btn-sm btn-slim btn-default btn-next-month" (mousedown)="nextMonth($event)"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </span>
+</div>
+</div>
+</div>
 <div class="col-sm-4 col-xs-4 text-center">
     <button type="button" class="btn btn-sm btn-default headertodaybtn" (mousedown)="todayClicked()">{{opts.todayBtnTxt}}</button>
 </div>
@@ -40,8 +40,8 @@
     <div style="float:right">
 <div class="input-group">
     <span class="input-group-btn">
-                            <a class="btn btn-sm btn-slim btn-default btn-prev-year" (click)="prevYear()"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                        </span>
+        <a class="btn btn-sm btn-slim btn-default btn-prev-year" (mousedown)="prevYear($event)"><i class="glyphicon glyphicon-chevron-left"></i></a>
+    </span>
 
     <div class="headeryeartxt">
         <input type="text" *ngIf="editYear" class="form-control input-sm input-min-width yearinput text-center" maxlength="4" inputFocus
@@ -50,7 +50,7 @@
     </div>
 
     <span class="input-group-btn">
-                            <a class="btn btn-sm btn-slim btn-default btn-next-year" (click)="nextYear()"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-sm btn-slim btn-default btn-next-year" (mousedown)="nextYear($event)"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </span>
 </div>
 </div>
@@ -65,7 +65,7 @@
     <tbody>
         <tr *ngFor="let w of dates">
             <td class="daycell" *ngFor="let d of w" [ngClass]="{'currmonth':d.cmo===CURR_MONTH&&!d.disabled, 'currday':d.currDay&&opts.markCurrentDay, 'selectedday':selectedDate.day===d.dateObj.day && selectedDate.month===d.dateObj.month && selectedDate.year===d.dateObj.year && d.cmo===CURR_MONTH, 'disabled': d.disabled, 'tablesingleday': d.cmo===CURR_MONTH&&!d.disabled}"
-                (mousedown)="!d.disabled && cellClicked(d);$event.stopPropagation()">
+                (mousedown)="!d.disabled && cellClicked($event, d);$event.stopPropagation()">
                 <div [ngClass]="{'prevmonth':d.cmo===PREV_MONTH,'currmonth':d.cmo===CURR_MONTH,'nextmonth':d.cmo===NEXT_MONTH,'sunday':d.dayNbr === 0 && opts.sunHighlight}">
                     <span [ngClass]="{'sundayDim': opts.sunHighlight && d.dayNbr === 0 && (d.cmo===PREV_MONTH || d.cmo===NEXT_MONTH || d.disabled)}">{{d.dateObj.day}}</span>
                 </div>
