@@ -24,6 +24,7 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
     @Input() locale: string;
     @Input() defaultMonth: string;
     @Input() selDate: string;
+    @Input() cssClass = 'glyphicon glyphicon-calendar';
     @Output() dateChanged: EventEmitter<Object> = new EventEmitter();
     @Output() inputFieldChanged: EventEmitter<Object> = new EventEmitter();
     @Output() calendarViewChanged: EventEmitter<Object> = new EventEmitter();
